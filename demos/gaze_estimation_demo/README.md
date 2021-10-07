@@ -22,58 +22,29 @@ Other demo objectives are:
 
 .. tab:: C++ G-API
 
-   1. The application reads command-line parameters and loads four networks.
-   2. The application uses graph for processing frame from source.
-   * Graph receives frame.
-   * Performs inference of Face Detection network. ROIs obtained by Face Detector are fed to the Facial Landmarks and Head-Pose estimation networks.
-   * Gets information about head pose angles. Finds eyes regions serving as an input for Gaze Estimation model.
-   * Performs inference of Gaze Estimation network and processes its result.
-   3. The application shows the results.
+   #. The application reads command-line parameters and loads four networks.
+   #. The application uses graph for processing frame from source.
+   
+      * Graph receives frame.
+      * Performs inference of Face Detection network. ROIs obtained by Face Detector are fed to the Facial Landmarks and Head-Pose estimation networks.
+      * Gets information about head pose angles. Finds eyes regions serving as an input for Gaze Estimation model.
+      * Performs inference of Gaze Estimation network and processes its result.
+      
+   #. The application shows the results.
 
 .. tab:: C++
 
-   1. The application reads command-line parameters and loads four networks to the Inference Engine
-   2. The application gets a frame from the OpenCV VideoCapture
-   3. The application performs inference on auxiliary models to obtain head pose angles and images of eyes regions serving as an input for gaze estimation model
-   4. The application performs inference on gaze estimation model using inference results of auxiliary models
-   5. The application shows the results
+   #. The application reads command-line parameters and loads four networks to the Inference Engine
+   #. The application gets a frame from the OpenCV VideoCapture
+   #. The application performs inference on auxiliary models to obtain head pose angles and images of eyes regions serving as an input for gaze estimation model
+   #. The application performs inference on gaze estimation model using inference results of auxiliary models
+   #. The application shows the results
 
 @endsphinxdirective
 
-> **NOTE**: By default, Open Model Zoo demos expect input with BGR channels order. If you trained your model to work with RGB order, you need to manually rearrange the default channels order in the demo application or reconvert your model using the Model Optimizer tool with the `--reverse_input_channels` argument specified. For more information about the argument, refer to **When to Reverse Input Channels** section of [Converting a Model Using General Conversion Parameters](https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Converting_Model_General.html)
+> **NOTE**: By default, Open Model Zoo demos expect input with BGR channel order. If you trained your model to work with RGB order, you need to manually rearrange the default channels order in the demo application or reconvert your model using the Model Optimizer tool with the `--reverse_input_channels` argument specified. For more information about the argument, refer to **When to Reverse Input Channels** section of [Converting a Model Using General Conversion Parameters](https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Converting_Model_General.html)
 
-## Preparing to Run
-
-@sphinxdirective
-
-.. tab:: C++ G-API
-
-   For demo input image or video files you may refer to `Media Files Available for Demos <../../README.md#Media-Files-Available-for-Demos>`_.
-   The list of models supported by the demo is in ``<omz_dir>/demos/gaze_estimation_demo/cpp_gapi/models.lst`` file.
-   This file can be used as a parameter for `Model Downloader <../../../tools/downloader/README.md>`_ and Converter to download and, if necessary, convert models to OpenVINO Inference Engine format (\*.xml + \*.bin).
-
-.. tab:: C++
- 
-   For demo input image or video files you may refer to `Media Files Available for Demos <../../README.md#Media-Files-Available-for-Demos>`_.
-   The list of models supported by the demo is in ``<omz_dir>/demos/gaze_estimation_demo/cpp/models.lst`` file.
-   This file can be used as a parameter for `Model Downloader <../../../tools/downloader/README.md>`_ and Converter to download and, if necessary, convert models to OpenVINO Inference Engine format (\*.xml + \*.bin).
-
-   An example of using the Model Downloader:
-
-   .. code-block:: sh
-
-      python3 <omz_dir>/tools/downloader/downloader.py --list models.lst
-
-
-   An example of using the Model Converter:
-
-   .. code-block:: sh
-
-      python3 <omz_dir>/tools/downloader/converter.py --list models.lst
-
-@endsphinxdirective
-
-### Supported Models
+## Supported Models
 
 * facial-landmarks-35-adas-0002
 * face-detection-adas-0001
@@ -85,6 +56,29 @@ Other demo objectives are:
 * open-closed-eye-0001
 
 > **NOTE**: Refer to the tables [Intel's Pre-Trained Models Device Support](../../../models/intel/device_support.md) and [Public Pre-Trained Models Device Support](../../../models/public/device_support.md) for the details on models inference support at different devices.
+
+## Preparing to Run
+
+## Downloading and Converting Models
+
+The list of models supported by the demo is in the `<omz_dir>/demos/gaze_estimation_demo/cpp_gapi/models.lst` file.
+This file can be used as a parameter for Model Downloader and Model Converter to download and convert models to OpenVINO Inference Engine format (\*.xml + \*.bin).
+
+An example of using the Model Downloader to download models for this demo:
+
+```
+python3 <omz_dir>/tools/downloader/downloader.py --list models.lst
+```
+
+An example of using the Model Converter to convert the downloaded models:
+
+```
+python3 <omz_dir>/tools/downloader/converter.py --list models.lst
+```
+
+## Selecting Sample Media
+
+For demo input video files you may refer to [Media Files Available for Demos](../../README.md#Media-Files-Available-for-Demos).
 
 ## Running
 
@@ -187,9 +181,9 @@ For example, to do inference on a CPU, run the following command:
     
 @endsphinxdirective
     
-### Run-Time Control Keys
+### Runtime Control Keys
 
-The demo allows you to control what information is displayed in run-time.
+The demo allows you to control what information is displayed at runtime.
 The following keys are supported:
 
 * G - to toggle displaying gaze vector
