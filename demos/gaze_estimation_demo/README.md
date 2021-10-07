@@ -1,6 +1,6 @@
 # G-API Gaze Estimation Demo
 
-![example](../gaze_estimation.gif)
+![example](./gaze_estimation.gif)
 
 This demo showcases the work of gaze estimation model.
 
