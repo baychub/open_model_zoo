@@ -153,10 +153,26 @@ Running the application with an empty list of options yields an error message.
 
 For example, to do inference on a CPU, run the following command:
 
-```sh
-./gaze_estimation_demo_gapi -d CPU -i <path_to_video>/input_video.mp4  -m <path_to_model>/gaze-estimation-adas-0002.xml -m_fd <path_to_model>/face-detection-retail-0004.xml -m_hp <path_to_model>/head-pose-estimation-adas-0001.xml -m_lm <path_to_model>/facial-landmarks-35-adas-0002.xml
-```
+@sphinxdirective
+.. tab:: C++ G-API
+.. code-block:: sh
 
+   ./gaze_estimation_demo_gapi -d CPU -i <path_to_video>/input_video.mp4  -m <path_to_model>/gaze-estimation-adas-0002.xml -m_fd <path_to_model>/face-detection-retail-0004.xml -m_hp <path_to_model>/head-pose-estimation-adas-0001.xml -m_lm <path_to_model>/facial-landmarks-35-adas-0002.xml
+
+.. tab:: C++
+.. code-block:: sh
+    
+   ./gaze_estimation_demo \
+      -d CPU \
+      -i <path_to_video>/input_video.mp4 \
+      -m <path_to_model>/gaze-estimation-adas-0002.xml \
+      -m_fd <path_to_model>/face-detection-retail-0004.xml \
+      -m_hp <path_to_model>/head-pose-estimation-adas-0001.xml \
+      -m_lm <path_to_model>/facial-landmarks-35-adas-0002.xml \
+      -m_es <path_to_model>/open-closed-eye-0001.xml
+    
+@endsphinxdirective
+    
 ### Run-Time Control Keys
 
 The demo allows you to control what information is displayed in run-time.
