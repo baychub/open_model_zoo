@@ -40,11 +40,15 @@ Other demo objectives are:
 ## Preparing to Run
 
 @sphinxdirective
+
 .. tab:: C++ G-API
+
 For demo input image or video files you may refer to `Media Files Available for Demos <../../README.md#Media-Files-Available-for-Demos>`_.
 The list of models supported by the demo is in ``<omz_dir>/demos/gaze_estimation_demo/cpp_gapi/models.lst`` file.
 This file can be used as a parameter for `Model Downloader <../../../tools/downloader/README.md>`_ and Converter to download and, if necessary, convert models to OpenVINO Inference Engine format (\*.xml + \*.bin).
+
 .. tab:: C++
+
 For demo input image or video files you may refer to `Media Files Available for Demos <../../README.md#Media-Files-Available-for-Demos>`_.
 The list of models supported by the demo is in ``<omz_dir>/demos/gaze_estimation_demo/cpp/models.lst`` file.
 This file can be used as a parameter for `Model Downloader <../../../tools/downloader/README.md>`_ and Converter to download and, if necessary, convert models to OpenVINO Inference Engine format (\*.xml + \*.bin).
@@ -85,67 +89,68 @@ Running the application with the `-h` option yields the following usage message:
 .. tab:: C++ G-API
 .. code-block:: sh
 
-  InferenceEngine:
-      API version ............ <version>
-      Build .................. <number>
+InferenceEngine:
+    API version ............ <version>
+    Build .................. <number>
 
-  gaze_estimation_demo_gapi [OPTION]
-  Options:
+gaze_estimation_demo_gapi [OPTION]
+Options:
 
-      -h                       Print a usage message.
-      -i                       Required. An input to process. The input must be a single image, a folder of images, video file or camera id.
-      -loop                    Optional. Enable reading the input in a loop.
-      -o "<path>"              Optional. Name of the output file(s) to save.
-      -limit "<num>"           Optional. Number of frames to store in output. If 0 is set, all frames are stored.
-      -res "<WxH>"             Optional. Set camera resolution in format WxH.
-      -m "<path>"              Required. Path to an .xml file with a trained Gaze Estimation model.
-      -m_fd "<path>"           Required. Path to an .xml file with a trained Face Detection model.
-      -m_hp "<path>"           Required. Path to an .xml file with a trained Head Pose Estimation model.
-      -m_lm "<path>"           Required. Path to an .xml file with a trained Facial Landmarks Estimation model.
-      -m_es "<path>"           Required. Path to an .xml file with a trained Open/Closed Eye Estimation model.
-      -d "<device>"            Optional. Target device for Gaze Estimation network (the list of available devices is shown below).
-      -d_fd "<device>"         Optional. Target device for Face Detection network (the list of available devices is shown below).
-      -d_hp "<device>"         Optional. Target device for Head Pose Estimation network (the list of available devices is shown below).
-      -d_lm "<device>"         Optional. Target device for Facial Landmarks Estimation network (the list of available devices is shown below).
-      -d_es "<device>"         Optional. Target device for Open/Closed Eye network (the list of available devices is shown below).
-      -fd_reshape              Optional. Reshape Face Detector network so that its input resolution has the same aspect ratio as the input frame.
-      -no_show                 Optional. Don't show output.
-      -r                       Optional. Output inference results as raw values.
-      -t                       Optional. Probability threshold for Face Detector. The default value is 0.5.
-      -u                       Optional. List of monitors to show initially.
+   -h                       Print a usage message.
+   -i                       Required. An input to process. The input must be a single image, a folder of images, video file or camera id.
+   -loop                    Optional. Enable reading the input in a loop.
+   -o "<path>"              Optional. Name of the output file(s) to save.
+   -limit "<num>"           Optional. Number of frames to store in output. If 0 is set, all frames are stored.
+   -res "<WxH>"             Optional. Set camera resolution in format WxH.
+   -m "<path>"              Required. Path to an .xml file with a trained Gaze Estimation model.
+   -m_fd "<path>"           Required. Path to an .xml file with a trained Face Detection model.
+   -m_hp "<path>"           Required. Path to an .xml file with a trained Head Pose Estimation model.
+   -m_lm "<path>"           Required. Path to an .xml file with a trained Facial Landmarks Estimation model.
+   -m_es "<path>"           Required. Path to an .xml file with a trained Open/Closed Eye Estimation model.
+   -d "<device>"            Optional. Target device for Gaze Estimation network (the list of available devices is shown below).
+   -d_fd "<device>"         Optional. Target device for Face Detection network (the list of available devices is shown below).
+   -d_hp "<device>"         Optional. Target device for Head Pose Estimation network (the list of available devices is shown below).
+   -d_lm "<device>"         Optional. Target device for Facial Landmarks Estimation network (the list of available devices is shown below).
+   -d_es "<device>"         Optional. Target device for Open/Closed Eye network (the list of available devices is shown below).
+   -fd_reshape              Optional. Reshape Face Detector network so that its input resolution has the same aspect ratio as the input frame.
+   -no_show                 Optional. Don't show output.
+   -r                       Optional. Output inference results as raw values.
+   -t                       Optional. Probability threshold for Face Detector. The default value is 0.5.
+   -u                       Optional. List of monitors to show initially.
 
 .. tab:: C++
+    
 .. code-block:: sh
 
-  InferenceEngine:
-      API version ............ <version>
-      Build .................. <number>
+InferenceEngine:
+    API version ............ <version>
+    Build .................. <number>
 
-  gaze_estimation_demo [OPTION]
-  Options:
+gaze_estimation_demo [OPTION]
+Options:
 
-      -h                       Print a usage message.
-      -i                       Required. An input to process. The input must be a single image, a folder of images, video file or camera id.
-      -loop                    Optional. Enable reading the input in a loop.
-      -o "<path>"              Optional. Name of the output file(s) to save.
-      -limit "<num>"           Optional. Number of frames to store in output. If 0 is set, all frames are stored.
-      -res "<WxH>"             Optional. Set camera resolution in format WxH.
-      -m "<path>"              Required. Path to an .xml file with a trained Gaze Estimation model.
-      -m_fd "<path>"           Required. Path to an .xml file with a trained Face Detection model.
-      -m_hp "<path>"           Required. Path to an .xml file with a trained Head Pose Estimation model.
-      -m_lm "<path>"           Required. Path to an .xml file with a trained Facial Landmarks Estimation model.
-      -m_es "<path>"           Required. Path to an .xml file with a trained Open/Closed Eye Estimation model.
-      -d "<device>"            Optional. Target device for Gaze Estimation network (the list of available devices is shown below). Use "-d HETERO:<comma-separated_devices_list>" format to specify HETERO plugin. The demo will look for a suitable plugin for a specified device. Default value is "CPU".
-      -d_fd "<device>"         Optional. Target device for Face Detection network (the list of available devices is shown below). Use "-d HETERO:<comma-separated_devices_list>" format to specify HETERO plugin. The demo will look for a suitable plugin for a specified device. Default value is "CPU".
-      -d_hp "<device>"         Optional. Target device for Head Pose Estimation network (the list of available devices is shown below). Use "-d HETERO:<comma-separated_devices_list>" format to specify HETERO plugin. The demo will look for a suitable plugin for a specified device. Default value is "CPU".
-      -d_lm "<device>"         Optional. Target device for Facial Landmarks Estimation network (the list of available devices is shown below). Use "-d HETERO:<comma-separated_devices_list>" format to specify HETERO plugin. The demo will look for a suitable plugin for a specified device. Default value is "CPU".
-      -d_es "<device>"         Optional. Target device for Open/Closed Eye network (the list of available devices is shown below). Use "-d HETERO:<comma-separated_devices_list>" format to specify HETERO plugin. The demo will look for a suitable plugin for a specified device. Default value is "CPU".
-      -fd_reshape              Optional. Reshape Face Detector network so that its input resolution has the same aspect ratio as the input frame.
-      -no_show                 Optional. Don't show output.
-      -pc                      Optional. Enable per-layer performance report.
-      -r                       Optional. Output inference results as raw values.
-      -t                       Optional. Probability threshold for Face Detector. The default value is 0.5.
-      -u                       Optional. List of monitors to show initially.
+    -h                       Print a usage message.
+    -i                       Required. An input to process. The input must be a single image, a folder of images, video file or camera id.
+    -loop                    Optional. Enable reading the input in a loop.
+    -o "<path>"              Optional. Name of the output file(s) to save.
+    -limit "<num>"           Optional. Number of frames to store in output. If 0 is set, all frames are stored.
+    -res "<WxH>"             Optional. Set camera resolution in format WxH.
+    -m "<path>"              Required. Path to an .xml file with a trained Gaze Estimation model.
+    -m_fd "<path>"           Required. Path to an .xml file with a trained Face Detection model.
+    -m_hp "<path>"           Required. Path to an .xml file with a trained Head Pose Estimation model.
+    -m_lm "<path>"           Required. Path to an .xml file with a trained Facial Landmarks Estimation model.
+    -m_es "<path>"           Required. Path to an .xml file with a trained Open/Closed Eye Estimation model.
+    -d "<device>"            Optional. Target device for Gaze Estimation network (the list of available devices is shown below). Use "-d HETERO:<comma-separated_devices_list>" format to specify HETERO plugin. The demo will look for a suitable plugin for a specified device. Default value is "CPU".
+    -d_fd "<device>"         Optional. Target device for Face Detection network (the list of available devices is shown below). Use "-d HETERO:<comma-separated_devices_list>" format to specify HETERO plugin. The demo will look for a suitable plugin for a specified device. Default value is "CPU".
+    -d_hp "<device>"         Optional. Target device for Head Pose Estimation network (the list of available devices is shown below). Use "-d HETERO:<comma-separated_devices_list>" format to specify HETERO plugin. The demo will look for a suitable plugin for a specified device. Default value is "CPU".
+    -d_lm "<device>"         Optional. Target device for Facial Landmarks Estimation network (the list of available devices is shown below). Use "-d HETERO:<comma-separated_devices_list>" format to specify HETERO plugin. The demo will look for a suitable plugin for a specified device. Default value is "CPU".
+    -d_es "<device>"         Optional. Target device for Open/Closed Eye network (the list of available devices is shown below). Use "-d HETERO:<comma-separated_devices_list>" format to specify HETERO plugin. The demo will look for a suitable plugin for a specified device. Default value is "CPU".
+    -fd_reshape              Optional. Reshape Face Detector network so that its input resolution has the same aspect ratio as the input frame.
+    -no_show                 Optional. Don't show output.
+    -pc                      Optional. Enable per-layer performance report.
+    -r                       Optional. Output inference results as raw values.
+    -t                       Optional. Probability threshold for Face Detector. The default value is 0.5.
+    -u                       Optional. List of monitors to show initially.
 
 @endsphinxdirective
 
@@ -154,22 +159,25 @@ Running the application with an empty list of options yields an error message.
 For example, to do inference on a CPU, run the following command:
 
 @sphinxdirective
+    
 .. tab:: C++ G-API
+    
 .. code-block:: sh
 
-   ./gaze_estimation_demo_gapi -d CPU -i <path_to_video>/input_video.mp4  -m <path_to_model>/gaze-estimation-adas-0002.xml -m_fd <path_to_model>/face-detection-retail-0004.xml -m_hp <path_to_model>/head-pose-estimation-adas-0001.xml -m_lm <path_to_model>/facial-landmarks-35-adas-0002.xml
+./gaze_estimation_demo_gapi -d CPU -i <path_to_video>/input_video.mp4  -m <path_to_model>/gaze-estimation-adas-0002.xml -m_fd <path_to_model>/face-detection-retail-0004.xml -m_hp <path_to_model>/head-pose-estimation-adas-0001.xml -m_lm <path_to_model>/facial-landmarks-35-adas-0002.xml
 
 .. tab:: C++
+    
 .. code-block:: sh
     
-   ./gaze_estimation_demo \
-      -d CPU \
-      -i <path_to_video>/input_video.mp4 \
-      -m <path_to_model>/gaze-estimation-adas-0002.xml \
-      -m_fd <path_to_model>/face-detection-retail-0004.xml \
-      -m_hp <path_to_model>/head-pose-estimation-adas-0001.xml \
-      -m_lm <path_to_model>/facial-landmarks-35-adas-0002.xml \
-      -m_es <path_to_model>/open-closed-eye-0001.xml
+./gaze_estimation_demo \
+    -d CPU \
+    -i <path_to_video>/input_video.mp4 \
+    -m <path_to_model>/gaze-estimation-adas-0002.xml \
+    -m_fd <path_to_model>/face-detection-retail-0004.xml \
+    -m_hp <path_to_model>/head-pose-estimation-adas-0001.xml \
+    -m_lm <path_to_model>/facial-landmarks-35-adas-0002.xml \
+    -m_es <path_to_model>/open-closed-eye-0001.xml
     
 @endsphinxdirective
     
