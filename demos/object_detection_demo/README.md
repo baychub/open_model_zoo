@@ -54,17 +54,20 @@ Async API operates with a notion of the "Infer Request" that encapsulates the in
 .. tab:: Python
 
    .. note:: 
+   
       **NOTE**: By default, Open Model Zoo demos expect input with BGR channels order. If you trained your model to work with RGB order, you need to manually rearrange the default channels order in the demo application or reconvert your model using the Model Optimizer tool with the ``--reverse_input_channels`` argument specified. For more information about the argument, refer to **When to Reverse Input Channels** section of `Converting a Model Using General Conversion Parameters <https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Converting_Model_General.html>`_.
       
 .. tab:: C++
 
    .. note:: 
+   
       **NOTE**: By default, Open Model Zoo demos expect input with BGR channels order. If you trained your model to work with RGB order, you need to manually rearrange the default channels order in the demo application or reconvert your model using the Model Optimizer tool with the ``--reverse_input_channels`` argument specified. For more information about the argument, refer to **When to Reverse Input Channels** section of `Converting a Model Using General Conversion Parameters <https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Converting_Model_General.html>`_.
       
    This demo operates in asynchronous manner by using "Infer Requests" that encapsulate the inputs/outputs and separates *scheduling and waiting for result*,
 as shown in code mockup below:
 
    .. code-block:: cpp
+   
       while (true) {
           capture frame
           take empty InferRequest from pool
@@ -89,15 +92,15 @@ as shown in code mockup below:
 @sphinxdirective
 .. tab:: Python
 
-   For demo input image or video files you may refer to `Media Files Available for Demos <../../README.md#Media-Files-Available-for-Demos>`_.
+   For demo input image or video files you may refer to :doc:`Media Files Available for Demos <../../README.md#Media-Files-Available-for-Demos>`.
    The list of models supported by the demo is in ``<omz_dir>/demos/object_detection_demo/python/models.lst`` file.
-   This file can be used as a parameter for `Model Downloader <../../../tools/downloader/README.md>`_ and Converter to download and, if necessary, convert models to OpenVINO Inference Engine format (\*.xml + \*.bin).
+   This file can be used as a parameter for :doc:`Model Downloader <../../../tools/downloader/README` and Converter to download and, if necessary, convert models to OpenVINO Inference Engine format (\*.xml + \*.bin).
 
 .. tab:: C++
 
-   For demo input image or video files you may refer to `Media Files Available for Demos <../../README.md#Media-Files-Available-for-Demos>`_.
+   For demo input image or video files you may refer to :doc:`Media Files Available for Demos <../../README.md#Media-Files-Available-for-Demos>`.
    The list of models supported by the demo is in ``<omz_dir>/demos/object_detection_demo/cpp/models.lst`` file.
-   This file can be used as a parameter for `Model Downloader <../../../tools/downloader/README.md>`_ and Converter to download and, if necessary, convert models to OpenVINO Inference Engine format (\*.xml + \*.bin).
+   This file can be used as a parameter for :doc:`Model Downloader <../../../tools/downloader/README` and Converter to download and, if necessary, convert models to OpenVINO Inference Engine format (\*.xml + \*.bin).
 
 @endsphinxdirective
 
