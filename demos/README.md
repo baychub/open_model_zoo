@@ -8,58 +8,53 @@ C++, C++ G-API and Python\* versions are located in the `cpp`, `cpp_gapi` and `p
 
 The Open Model Zoo includes the following demos:
 
-- [3D Human Pose Estimation Python\* Demo](./human_pose_estimation_3d_demo/python/README.md) - 3D human pose estimation demo.
-- [3D Segmentation Python\* Demo](./3d_segmentation_demo/python/README.md) - Segmentation demo segments 3D images using 3D convolutional networks.
-- [Action Recognition Python\* Demo](./action_recognition_demo/python/README.md) - Demo application for Action Recognition algorithm, which classifies actions that are being performed on input video.
-- [BERT Named Entity Recognition Python\* Demo](./bert_named_entity_recognition_demo/python/README.md) - NER Demo application that uses a CONLL2003-tuned BERT model for inference.
-- [BERT Question Answering Python\* Demo](./bert_question_answering_demo/python/README.md)
-- [BERT Question Answering Embedding Python\* Demo](./bert_question_answering_embedding_demo/python/README.md) - The demo demonstrates how to run BERT based models for question answering task.
-- [Classification C++ Demo](./classification_demo/cpp/README.md) - Shows an example of using neural networks for image classification.
-- [Colorization Python\* Demo](./colorization_demo/python/README.md) - Colorization demo colorizes input frames.
-- [Crossroad Camera C++ Demo](./crossroad_camera_demo/cpp/README.md) - Person Detection followed by the Person Attributes Recognition and Person Reidentification Retail, supports images/video and camera inputs.
-- [Deblurring Python\* Demo](./deblurring_demo/python/README.md) - Demo for deblurring the input images.
-- [Face Detection MTCNN Python\* Demo](./face_detection_mtcnn_demo/python/README.md) - The demo demonstrates how to run MTCNN face detection model to detect faces on images.
-- [Face Recognition Python\* Demo](./face_recognition_demo/python/README.md) - The interactive face recognition demo.
-- [Formula Recognition Python\* Demo](./formula_recognition_demo/python/README.md) - The demo demonstrates how to run Im2latex formula recognition models and recognize latex formulas.
-- [Gaze Estimation C++ Demo](./gaze_estimation_demo/cpp/README.md) - Face detection followed by gaze estimation, head pose estimation and facial landmarks regression.
-- [Gaze Estimation C++ G-API Demo](./gaze_estimation_demo/cpp_gapi/README.md) - Face detection followed by gaze estimation, head pose estimation and facial landmarks regression. G-API version.
-- [Gesture Recognition Python\* Demo](./gesture_recognition_demo/python/README.md) - Demo application for Gesture Recognition algorithm (e.g. American Sign Language gestures), which classifies gesture actions that are being performed on input video.
-- [Handwritten Text Recognition Python\* Demo](./handwritten_text_recognition_demo/python/README.md) - The demo demonstrates how to run Handwritten Japanese Recognition models and Handwritten Simplified Chinese Recognition models.
-- [Human Pose Estimation C++ Demo](./human_pose_estimation_demo/cpp/README.md) - Human pose estimation demo.
-- [Human Pose Estimation Python\* Demo](./human_pose_estimation_demo/python/README.md) - Human pose estimation demo.
-- [Image Inpainting Python\* Demo](./image_inpainting_demo/python/README.md) - Demo application for GMCNN inpainting network.
-- [Image Processing C++ Demo](./image_processing_demo/cpp/README.md) - Demo application for deblurring and enhancing the resolution of the input image.
-- [Image Retrieval Python\* Demo](./image_retrieval_demo/python/README.md) - The demo demonstrates how to run Image Retrieval models using OpenVINO&trade;.
-- [Image Segmentation C++ Demo](./segmentation_demo/cpp/README.md) - Inference of semantic segmentation networks (supports video and camera inputs).
-- [Image Segmentation Python\* Demo](./segmentation_demo/python/README.md) - Inference of semantic segmentation networks (supports video and camera inputs).
-- [Image Translation Python\* Demo](./image_translation_demo/python/README.md) - Demo application to synthesize a photo-realistic image based on exemplar image.
-- [Instance Segmentation Python\* Demo](./instance_segmentation_demo/python/README.md) - Inference of instance segmentation networks trained in `Detectron` or `maskrcnn-benchmark`.
-- [Interactive Face Detection C++ Demo](./interactive_face_detection_demo/cpp/README.md) - Face Detection coupled with Age/Gender, Head-Pose, Emotion, and Facial Landmarks detectors. Supports video and camera inputs.
-- [Interactive Face Detection G-API Demo](./interactive_face_detection_demo/cpp_gapi/README.md) - G-API based Face Detection coupled with Age/Gender, Head-Pose, Emotion, and Facial Landmarks detectors. Supports video and camera inputs.
-- [Machine Translation Python\* Demo](./machine_translation_demo/python/README.md) - The demo demonstrates how to run non-autoregressive machine translation models.
-- [Mask R-CNN C++ Demo for TensorFlow\* Object Detection API](./mask_rcnn_demo/cpp/README.md) - Inference of instance segmentation networks created with TensorFlow\* Object Detection API.
-- [Monodepth Python\* Demo](./monodepth_demo/python/README.md) - The demo demonstrates how to run monocular depth estimation models.
-- [Multi-Camera Multi-Target Tracking Python\* Demo](./multi_camera_multi_target_tracking_demo/python/README.md) Demo application for multiple targets (persons or vehicles) tracking on multiple cameras.
-- [Multi-Channel Face Detection C++ Demo](./multi_channel_face_detection_demo/cpp/README.md) - The demo demonstrates an inference pipeline for multi-channel face detection scenario.
-- [Multi-Channel Human Pose Estimation C++ Demo](./multi_channel_human_pose_estimation_demo/cpp/README.md) - The demo demonstrates an inference pipeline for multi-channel human pose estimation scenario.
-- [Multi-Channel Object Detection Yolov3 C++ Demo](./multi_channel_object_detection_demo_yolov3/cpp/README.md) - The demo demonstrates an inference pipeline for multi-channel common object detection scenario.
-- [Noise Suppression Python\* Demo](./noise_suppression_demo/python/README.md) - The demo shows how to use the OpenVINO™ toolkit to reduce noise in speech audio.
-- [Object Detection Python\* Demo](./object_detection_demo/python/README.md) - Demo application for several object detection model types (like SSD, Yolo, etc).
-- [Object Detection C++ Demo](./object_detection_demo/cpp/README.md) - Demo application for Object Detection networks (different models architectures are supported), async API showcase, simple OpenCV interoperability (supports video and camera inputs).
-- [Pedestrian Tracker C++ Demo](./pedestrian_tracker_demo/cpp/README.md) - Demo application for pedestrian tracking scenario.
-- [Place Recognition Python\* Demo](./place_recognition_demo/python/README.md) - This demo demonstrates how to run Place Recognition models using OpenVINO™.
-- [Security Barrier Camera C++ Demo](./security_barrier_camera_demo/cpp/README.md) - Vehicle Detection followed by the Vehicle Attributes and License-Plate Recognition, supports images/video and camera inputs.
-- [Speech Recognition DeepSpeech Python\* Demo](./speech_recognition_deepspeech_demo/python/README.md) - Speech recognition demo: accepts an audio file with an English phrase on input and converts it into text. This demo does streaming audio data processing and can optionally provide current transcription of the processed part.
-- [Speech Recognition QuartzNet Python\* Demo](./speech_recognition_quartznet_demo/python/README.md) - Speech recognition demo for QuartzNet: takes a whole audio file with an English phrase on input and converts it into text.
-- [Single Human Pose Estimation Python\* Demo](./single_human_pose_estimation_demo/python/README.md) - 2D human pose estimation demo.
-- [Smart Classroom C++ Demo](./smart_classroom_demo/cpp/README.md) - Face recognition and action detection demo for classroom environment.
-- [Social Distance C++ Demo](./social_distance_demo/cpp/README.md) - This demo showcases a retail social distance application that detects people and measures the distance between them.
-- [Sound Classification Python\* Demo](./sound_classification_demo/python/README.md) - Demo application for sound classification algorithm.
-- [Text Detection C++ Demo](./text_detection_demo/cpp/README.md) - Text Detection demo. It detects and recognizes multi-oriented scene text on an input image and puts a bounding box around detected area.
-- [Text Spotting Python\* Demo](./text_spotting_demo/python/README.md) - The demo demonstrates how to run Text Spotting models.
-- [Text-to-speech Python\* Demo](./text_to_speech_demo/python/README.md) - Shows an example of using Forward Tacotron and WaveRNN neural networks for text to speech task.
-- [Time Series Forecasting Python\* Demo](./time_series_forecasting_demo/python/README.md) - The demo shows how to use the OpenVINO™ toolkit to time series forecastig.
-- [Whiteboard Inpainting Python\* Demo](./whiteboard_inpainting_demo/python/README.md) - The demo shows how to use the OpenVINO™ toolkit to detect and hide a person on a video so that all text on a whiteboard is visible.
+- [3D Human Pose Estimation demo (Python\*)](./human_pose_estimation_3d_demo/python/README.md): 3D human pose estimation demo.
+- [3D Segmentation demo (Python\*)](./3d_segmentation_demo/python/README.md): Segmentation demo segments 3D images using 3D convolutional networks.
+- [Action Recognition demo (Python\*)](./action_recognition_demo/python/README.md): Demo application for Action Recognition algorithm, which classifies actions that are being performed on input video.
+- [BERT Named Entity Recognition demo (Python\*)](./bert_named_entity_recognition_demo/python/README.md): NER Demo application that uses a CONLL2003-tuned BERT model for inference.
+- [BERT Question Answering demo (Python\*)](./bert_question_answering_demo/python/README.md)
+- [BERT Question Answering Embedding demo (Python\*)](./bert_question_answering_embedding_demo/python/README.md): The demo demonstrates how to run BERT based models for question answering task.
+- [Classification demo (C++)](./classification_demo/cpp/README.md): Shows an example of using neural networks for image classification.
+- [Colorization demo (Python\*)](./colorization_demo/python/README.md): Colorization demo colorizes input frames.
+- [Crossroad Camera demo (C++)](./crossroad_camera_demo/cpp/README.md): Person Detection followed by the Person Attributes Recognition and Person Reidentification Retail, supports images/video and camera inputs.
+- [Deblurring demo (Python\*)](./deblurring_demo/python/README.md): Demo for deblurring the input images.
+- [Face Detection MTCNN demo (Python\*)](./face_detection_mtcnn_demo/python/README.md): The demo demonstrates how to run MTCNN face detection model to detect faces on images.
+- [Face Recognition demo (Python\*)](./face_recognition_demo/python/README.md): The interactive face recognition demo.
+- [Formula Recognition demo (Python\*)](./formula_recognition_demo/python/README.md) :The demo demonstrates how to run Im2latex formula recognition models and recognize latex formulas.
+- [Gaze Estimation demo (C++, G-API)](./gaze_estimation_demo/README.md): Face detection followed by gaze estimation, head pose estimation and facial landmarks regression.
+- [Gesture Recognition demo (Python\*)](./gesture_recognition_demo/python/README.md): Demo application for Gesture Recognition algorithm (e.g. American Sign Language gestures), which classifies gesture actions that are being performed on input video.
+- [Handwritten Text Recognition demo (Python\*)](./handwritten_text_recognition_demo/python/README.md): The demo demonstrates how to run Handwritten Japanese Recognition models and Handwritten Simplified Chinese Recognition models.
+- [Human Pose Estimation demo (C++, Python\*)](./human_pose_estimation_demo/README.md): Human pose estimation demo.
+- [Image Inpainting demo (Python\*)](./image_inpainting_demo/python/README.md): Demo application for GMCNN inpainting network.
+- [Image Processing demo (C++)](./image_processing_demo/cpp/README.md): Demo application for deblurring and enhancing the resolution of the input image.
+- [Image Retrieval demo (Python\*)](./image_retrieval_demo/python/README.md): The demo demonstrates how to run Image Retrieval models using OpenVINO&trade;.
+- [Image Segmentation demo (C++, Python\*)](./segmentation_demo/README.md): Inference of semantic segmentation networks (supports video and camera inputs).
+- [Image Translation demo (Python\*)](./image_translation_demo/python/README.md): Demo application to synthesize a photo-realistic image based on exemplar image.
+- [Instance Segmentation demo (Python\*)](./instance_segmentation_demo/python/README.md): Inference of instance segmentation networks trained in `Detectron` or `maskrcnn-benchmark`.
+- [Interactive Face Detection demo (C++, G-API)](./interactive_face_detection_demo/README.md): Face Detection coupled with Age/Gender, Head-Pose, Emotion, and Facial Landmarks detectors. Supports video and camera inputs.
+- [Machine Translation demo (Python\*)](./machine_translation_demo/python/README.md): The demo demonstrates how to run non-autoregressive machine translation models.
+- [Mask R-CNN demo for TensorFlow\* Object Detection API (C++)](./mask_rcnn_demo/cpp/README.md): Inference of instance segmentation networks created with TensorFlow\* Object Detection API.
+- [Monodepth demo (Python\*)](./monodepth_demo/python/README.md): The demo demonstrates how to run monocular depth estimation models.
+- [Multi-Camera Multi-Target Tracking demo (Python\*)](./multi_camera_multi_target_tracking_demo/python/README.md): Demo application for multiple targets (persons or vehicles) tracking on multiple cameras.
+- [Multi-Channel Face Detection demo (C++)](./multi_channel_face_detection_demo/cpp/README.md): The demo demonstrates an inference pipeline for multi-channel face detection scenario.
+- [Multi-Channel Human Pose Estimation demo (C++)](./multi_channel_human_pose_estimation_demo/cpp/README.md): The demo demonstrates an inference pipeline for multi-channel human pose estimation scenario.
+- [Multi-Channel Object Detection Yolov3 demo (C++)](./multi_channel_object_detection_demo_yolov3/cpp/README.md) :The demo demonstrates an inference pipeline for multi-channel common object detection scenario.
+- [Noise Suppression demo (Python\*)](./noise_suppression_demo/python/README.md) :The demo shows how to use the OpenVINO™ toolkit to reduce noise in speech audio.
+- [Object Detection demo (C++, Python\*)](./object_detection_demo/README.md): Demo application for several object detection model types (like SSD, Yolo, etc).
+- [Pedestrian Tracker demo (C++)](./pedestrian_tracker_demo/cpp/README.md): Demo application for pedestrian tracking scenario.
+- [Place Recognition demo (Python\*)](./place_recognition_demo/python/README.md): This demo demonstrates how to run Place Recognition models using OpenVINO™.
+- [Security Barrier Camera demo (C++)](./security_barrier_camera_demo/cpp/README.md): Vehicle Detection followed by the Vehicle Attributes and License-Plate Recognition, supports images/video and camera inputs.
+- [Speech Recognition DeepSpeech demo (Python\*)](./speech_recognition_deepspeech_demo/python/README.md): Speech recognition demo: accepts an audio file with an English phrase on input and converts it into text. This demo does streaming audio data processing and can optionally provide current transcription of the processed part.
+- [Speech Recognition QuartzNet demo (Python\*)](./speech_recognition_quartznet_demo/python/README.md): Speech recognition demo for QuartzNet: takes a whole audio file with an English phrase on input and converts it into text.
+- [Single Human Pose Estimation demo (Python\*)](./single_human_pose_estimation_demo/python/README.md): 2D human pose estimation demo.
+- [Smart Classroom demo (C++)](./smart_classroom_demo/cpp/README.md): Face recognition and action detection demo for classroom environment.
+- [Social Distance demo (C++)](./social_distance_demo/cpp/README.md): This demo showcases a retail social distance application that detects people and measures the distance between them.
+- [Sound Classification demo (Python\*)](./sound_classification_demo/python/README.md): Demo application for sound classification algorithm.
+- [Text Detection demo (C++)](./text_detection_demo/cpp/README.md): Text Detection demo. It detects and recognizes multi-oriented scene text on an input image and puts a bounding box around detected area.
+- [Text Spotting demo (Python\*)](./text_spotting_demo/python/README.md): The demo demonstrates how to run Text Spotting models.
+- [Text-to-speech demo (Python\*)](./text_to_speech_demo/python/README.md): Shows an example of using Forward Tacotron and WaveRNN neural networks for text to speech task.
+- [Time Series Forecasting demo (Python\*)](./time_series_forecasting_demo/python/README.md): The demo shows how to use the OpenVINO™ toolkit to time series forecasting.
+- [Whiteboard Inpainting demo (Python\*)](./whiteboard_inpainting_demo/python/README.md): The demo shows how to use the OpenVINO™ toolkit to detect and hide a person on a video so that all text on a whiteboard is visible.
 
 ## Media Files Available for Demos
 
