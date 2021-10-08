@@ -39,34 +39,50 @@ OpenCV is used to draw resulting bounding boxes, labels, and other information. 
 @sphinxdirective
 .. tab:: C++
 
-   1. The application reads command-line parameters and loads up to five networks depending on ``-m...`` options family to the Inference Engine.
-   2. The application gets a frame from the OpenCV VideoCapture.
-   3. The application performs inference on the Face Detection network.
-   4. The application performs up to five simultaneous inferences, using the Age/Gender, Head Pose, Emotions, Facial Landmarks, and Anti-spoof detection networks if they are specified in the command line.
-   5. The application displays the results.
+   #. The application reads command-line parameters and loads up to five networks depending on ``-m...`` options family to the Inference Engine.
+   #. The application gets a frame from the OpenCV VideoCapture.
+   #. The application performs inference on the Face Detection network.
+   #. The application performs up to five simultaneous inferences, using the Age/Gender, Head Pose, Emotions, Facial Landmarks, and Anti-spoof detection networks if they are specified in the command line.
+   #. The application displays the results.
 
-   > **NOTE**: By default, Open Model Zoo demos expect input with BGR channels order. If you trained your model to work with RGB order, you need to manually rearrange the default channels order in the demo application or reconvert your model using the Model Optimizer tool with the ``--reverse_input_channels`` argument specified. For more information about the argument, refer to **When to Reverse Input Channels** section of `Converting a Model Using General Conversion Parameters <https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Converting_Model_General.html>`_.
+   .. note:: 
+   
+      **NOTE**: By default, Open Model Zoo demos expect input with BGR channels order. If you trained your model to work with RGB order, you need to manually rearrange the default channels order in the demo application or reconvert your model using the Model Optimizer tool with the ``--reverse_input_channels`` argument specified. For more information about the argument, refer to **When to Reverse Input Channels** section of `Converting a Model Using General Conversion Parameters <https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Converting_Model_General.html>`_.
 
    The Async API operates with a notion of the Infer Request that encapsulates the inputs/outputs and separates scheduling and waiting for result.
 
 .. tab:: C++ G-API
 
-   1. The application reads command-line parameters and loads up to five networks depending on ``-m...`` options family to the Inference Engine.
-   2. G-API pipeline gets a video/image/camera like a source, using the OpenCV VideoCapture.
-   3. G-API pipeline performs inference on the Face Detection network.
-   4. G-API pipeline runs post processing kernel.
-   5. G-API pipeline performs four inferences, using the Age/Gender, Head Pose, Emotions, and Facial Landmarks detection networks if they are specified in the command line.
+   #. The application reads command-line parameters and loads up to five networks depending on ``-m...`` options family to the Inference Engine.
+   #. G-API pipeline gets a video/image/camera like a source, using the OpenCV VideoCapture.
+   #. G-API pipeline performs inference on the Face Detection network.
+   #. G-API pipeline runs post processing kernel.
+   #. G-API pipeline performs four inferences, using the Age/Gender, Head Pose, Emotions, and Facial Landmarks detection networks if they are specified in the command line.
    6. The application displays the results.
 
-   > **NOTE**: By default, Open Model Zoo demos expect input with BGR channels order. If you trained your model to work with RGB order, you need to manually rearrange the default channels order in the demo application or reconvert your model using the Model Optimizer tool with the ``--reverse_input_channels`` argument specified. For more information about the argument, refer to **When to Reverse Input Channels** section of `Converting a Model Using General Conversion Parameters <https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Converting_Model_General.html>`_.
+   .. note:: 
+
+      **NOTE**: By default, Open Model Zoo demos expect input with BGR channels order. If you trained your model to work with RGB order, you need to manually rearrange the default channels order in the demo application or reconvert your model using the Model Optimizer tool with the ``--reverse_input_channels`` argument specified. For more information about the argument, refer to **When to Reverse Input Channels** section of `Converting a Model Using General Conversion Parameters <https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Converting_Model_General.html>`_.
 
 @endsphinxdirective
 
 ## Preparing to Run
 
-For demo input image or video files you may refer to [Media Files Available for Demos](../../README.md#Media-Files-Available-for-Demos).
-The list of models supported by the demo is in `<omz_dir>/demos/interactive_face_detection_demo/cpp/models.lst` file.
-This file can be used as a parameter for [Model Downloader](../../../tools/downloader/README.md) and Converter to download and, if necessary, convert models to OpenVINO Inference Engine format (\*.xml + \*.bin).
+@sphinxdirective
+
+.. tab:: C++
+
+   For demo input image or video files you may refer to :doc:`Media Files Available for Demos <../../README.md#Media-Files-Available-for-Demos>`.
+   The list of models supported by the demo is in ``<omz_dir>/demos/interactive_face_detection_demo/cpp/models.lst`` file.
+   This file can be used as a parameter for :doc:`Model Downloader <../../../tools/downloader/README.md>` and Converter to download and, if necessary, convert models to OpenVINO Inference Engine format (\*.xml + \*.bin).
+   
+.. tab:: C++ G-API
+
+   For demo input image or video files you may refer to :doc:`Media Files Available for Demos <../../README.md#Media-Files-Available-for-Demos>`.
+   The list of models supported by the demo is in ``<omz_dir>/demos/interactive_face_detection_demo/cpp/models.lst`` file.
+   This file can be used as a parameter for :doc:`Model Downloader <../../../tools/downloader/README.md>` and Converter to download and, if necessary, convert models to OpenVINO Inference Engine format (\*.xml + \*.bin).
+
+@endsphinxdirective
 
 An example of using the Model Downloader:
 
@@ -82,15 +98,31 @@ python3 <omz_dir>/tools/downloader/converter.py --list models.lst
 
 ### Supported Models
 
-* age-gender-recognition-retail-0013
-* anti-spoof-mn3
-* emotions-recognition-retail-0003
-* face-detection-adas-0001
-* face-detection-retail-0004
-* face-detection-retail-0005
-* face-detection-retail-0044
-* facial-landmarks-35-adas-0002
-* head-pose-estimation-adas-0001
+@sphinxdirective
+.. tab:: C++
+
+   * age-gender-recognition-retail-0013
+   * anti-spoof-mn3
+   * emotions-recognition-retail-0003
+   * face-detection-adas-0001
+   * face-detection-retail-0004
+   * face-detection-retail-0005
+   * face-detection-retail-0044
+   * facial-landmarks-35-adas-0002
+   * head-pose-estimation-adas-0001
+
+.. tab:: C++ G-API
+
+   * age-gender-recognition-retail-0013
+   * emotions-recognition-retail-0003
+   * face-detection-adas-0001
+   * face-detection-retail-0004
+   * face-detection-retail-0005
+   * face-detection-retail-0044
+   * facial-landmarks-35-adas-0002
+   * head-pose-estimation-adas-0001
+
+@endsphinxdirective
 
 > **NOTE**: Refer to the tables [Intel's Pre-Trained Models Device Support](../../../models/intel/device_support.md) and [Public Pre-Trained Models Device Support](../../../models/public/device_support.md) for the details on models inference support at different devices.
 
@@ -100,7 +132,7 @@ Running the application with the `-h` option yields the following usage message:
 
 @sphinxdirective
 .. tab:: C++
-      z
+      
    .. code-block:: sh
 
       InferenceEngine:
