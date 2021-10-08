@@ -1,6 +1,6 @@
 # Interactive Face Detection C++ Demo
 
-![example](../interactive_face_detection.gif)
+![example](./interactive_face_detection.gif)
 
 @sphinxdirective
 
