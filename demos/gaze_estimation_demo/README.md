@@ -1,4 +1,4 @@
-# G-API Gaze Estimation Demo
+# Gaze Estimation Demo
 
 ![example](./gaze_estimation.gif)
 
