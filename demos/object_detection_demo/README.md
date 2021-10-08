@@ -1,4 +1,4 @@
-# Object Detection Python\* Demo
+# Object Detection Demo
 
 ![example](./object_detection.gif)
 
