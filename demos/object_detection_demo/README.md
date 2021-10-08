@@ -493,4 +493,4 @@ You can use both of these metrics to measure application-level performance.
 
 * [Open Model Zoo Demos](../../README.md)
 * [Model Optimizer](https://docs.openvinotoolkit.org/latest/_docs_MO_DG_Deep_Learning_Model_Optimizer_DevGuide.html)
-* [Model Downloader](../../../tools/downloader/README.md
+* [Model Downloader](../../../tools/downloader/README.md)
