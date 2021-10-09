@@ -81,7 +81,7 @@ For demo input image or video files you may refer to :doc:`Media Files Available
    
 ### Downloading and converting models
 
-The list of models supported by the demo is in the `<omz_dir>/demos/gaze_estimation_demo/cpp_gapi/models.lst` file.
+The list of models supported by the demo is in the `<omz_dir>/demos/gaze_estimation_demo/cpp/models.lst` or `<omz_dir>/demos/gaze_estimation_demo/cpp_gapi/models.lst` file, depending on language.
 This file can be used as a parameter for Model Downloader and Model Converter to download and convert models to OpenVINO Inference Engine format (\*.xml + \*.bin).
 
 An example of using the Model Downloader:
