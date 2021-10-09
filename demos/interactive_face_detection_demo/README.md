@@ -8,13 +8,13 @@ This demo showcases an object detection task applied to face recognition using s
 
 .. tab:: C++
 
-   Async API can improve overall frame-rate of the application because rather than wait for inference to complete, 
+   The async API can improve the overall frame rate of the application because rather than wait for inference to complete, 
    the application can continue operating on the host while the accelerator is busy.
-   This demo executes five parallel infer requests for the Age/Gender Recognition, Head Pose Estimation, Emotions Recognition, Facial Landmarks Detection and Antispoofing Classifier networks that run simultaneously. 
+   This demo executes five parallel infer requests for Age/Gender Recognition, Head Pose Estimation, Emotions Recognition, Facial Landmarks Detection, and Antispoofing Classifier networks that run simultaneously. 
    
 .. tab:: C++ G-API
 
-   The pipeline is based on the `G-API framework <https://docs.opencv.org/master/d0/d1e/gapi.html>`_. This demo executes six `kernels <https://docs.opencv.org/master/d0/d25/gapi_kernel_api.html>`_, five of which are infer networks and the remaining one a postprocessing kernel.
+   The pipeline is based on the `G-API framework <https://docs.opencv.org/master/d0/d1e/gapi.html>`_. This demo executes six `kernels <https://docs.opencv.org/master/d0/d25/gapi_kernel_api.html>`_, five infer networks and one postprocessing kernel.
    This demo executes the Face Detection, Age/Gender Recognition, Head Pose Estimation, Emotions Recognition, and Facial Landmarks Detection networks.
 
 @endsphinxdirective
@@ -43,7 +43,6 @@ OpenCV is used to draw resulting bounding boxes, labels, and other information i
 
    #. The application reads command-line parameters and loads up to five networks depending on ``-m...`` options family to the Inference Engine.
    #. The application gets a frame from the OpenCV VideoCapture.
-   #. The application performs inference on the Face Detection network.
    #. The application performs up to five simultaneous inferences, using the Age/Gender, Head Pose, Emotions, Facial Landmarks, and Anti-spoof detection networks if they are specified in the command line.
    #. The application displays the results.
 
@@ -130,7 +129,7 @@ To do inference on a GPU with the OpenVINO&trade; toolkit pre-trained models, ru
      -i <path_to_video>/inputVideo.mp4 \
      -m <path_to_model>/face-detection-adas-0001.xml \
      -m_ag <path_to_model>/age-gender-recognition-retail-0013.xml \
-      -m_hp <path_to_model>/head-pose-estimation-adas-0001.xml \
+     -m_hp <path_to_model>/head-pose-estimation-adas-0001.xml \
      -m_em <path_to_model>/emotions-recognition-retail-0003.xml \
      -m_lm <path_to_model>/facial-landmarks-35-adas-0002.xml
      -d GPU
