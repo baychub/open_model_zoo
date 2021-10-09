@@ -2,37 +2,39 @@
 
 ![example](./interactive_face_detection.gif)
 
+This demo showcases an object detection task applied to face recognition using sequence of neural networks.
+
 @sphinxdirective
 
 .. tab:: C++
 
-   This demo showcases Object Detection task applied for face recognition using sequence of neural networks.
-   Async API can improve overall frame-rate of the application, because rather than wait for inference to complete,
-   the application can continue operating on the host while accelerator is busy.
-   This demo executes five parallel infer requests for the Age/Gender Recognition, Head Pose Estimation, Emotions Recognition, Facial Landmarks Detection and Antispoofing Classifier networks that run simultaneously. You can use a set of the following pre-trained models with the demo:
+   Async API can improve overall frame-rate of the application because rather than wait for inference to complete, 
+   the application can continue operating on the host while the accelerator is busy.
+   This demo executes five parallel infer requests for the Age/Gender Recognition, Head Pose Estimation, Emotions Recognition, Facial Landmarks Detection and Antispoofing Classifier networks that run simultaneously. 
    
 .. tab:: C++ G-API
 
-   This demo showcases Object Detection task applied for face recognition using sequence of neural networks.
-   The pipeline is based on the `G-API framework <https://docs.opencv.org/master/d0/d1e/gapi.html>`_. This demo executes six `kernels <https://docs.opencv.org/master/d0/d25/gapi_kernel_api.html>`_, five of them infer networks and another one is a postprocessing kernel.
-   This demo executes the Face Detection, Age/Gender Recognition, Head Pose Estimation, Emotions Recognition, and Facial Landmarks Detection networks. You can use a set of the following pre-trained models with the demo:
+   The pipeline is based on the `G-API framework <https://docs.opencv.org/master/d0/d1e/gapi.html>`_. This demo executes six `kernels <https://docs.opencv.org/master/d0/d25/gapi_kernel_api.html>`_, five of which are infer networks and the remaining one a postprocessing kernel.
+   This demo executes the Face Detection, Age/Gender Recognition, Head Pose Estimation, Emotions Recognition, and Facial Landmarks Detection networks.
 
-@sphinxdirective
+@endsphinxdirective
 
-* `face-detection-adas-0001`, which is a primary detection network for finding faces
-* `age-gender-recognition-retail-0013`, which is executed on top of the results of the first model and reports estimated age and gender for each detected face
-* `head-pose-estimation-adas-0001`, which is executed on top of the results of the first model and reports estimated head pose in Tait-Bryan angles
-* `emotions-recognition-retail-0003`, which is executed on top of the results of the first model and reports an emotion for each detected face
-* `facial-landmarks-35-adas-0002`, which is executed on top of the results of the first model and reports normed coordinates of estimated facial landmarks
-* `anti-spoof-mn3`, which is executed on top of the results of the first model and reports estimated probability whether spoof or real face is shown
+You can use a set of the following pre-trained models with the demo:
 
-Other demo objectives are:
+* `face-detection-adas-0001` is a primary detection network for finding faces
+* `age-gender-recognition-retail-0013` is executed on top of the results of the first model and reports estimated age and gender for each detected face
+* `head-pose-estimation-adas-0001` is executed on top of the results of the first model and reports estimated head pose in Tait-Bryan angles
+* `emotions-recognition-retail-0003` is executed on top of the results of the first model and reports an emotion for each detected face
+* `facial-landmarks-35-adas-0002` is executed on top of the results of the first model and reports normed coordinates of estimated facial landmarks
+* `anti-spoof-mn3` is executed on top of the results of the first model and reports estimated probability whether spoof or real face is shown
+
+Other demo objectives:
 
 * Video as input support via OpenCV\*
 * Visualization of the resulting face bounding boxes from Face Detection network
 * Visualization of age/gender, spoof/real, head pose, emotion information, and facial landmarks positions for each detected face
 
-OpenCV is used to draw resulting bounding boxes, labels, and other information. You can copy and paste this code without pulling Inference Engine demo helpers into your application.
+OpenCV is used to draw resulting bounding boxes, labels, and other information in the output video. You can copy and paste this code without pulling Inference Engine demo helpers into your application.
 
 ## How It Works
 
@@ -45,10 +47,6 @@ OpenCV is used to draw resulting bounding boxes, labels, and other information. 
    #. The application performs up to five simultaneous inferences, using the Age/Gender, Head Pose, Emotions, Facial Landmarks, and Anti-spoof detection networks if they are specified in the command line.
    #. The application displays the results.
 
-   .. note:: 
-   
-      **NOTE**: By default, Open Model Zoo demos expect input with BGR channels order. If you trained your model to work with RGB order, you need to manually rearrange the default channels order in the demo application or reconvert your model using the Model Optimizer tool with the ``--reverse_input_channels`` argument specified. For more information about the argument, refer to **When to Reverse Input Channels** section of `Converting a Model Using General Conversion Parameters <https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Converting_Model_General.html>`_.
-
    The Async API operates with a notion of the Infer Request that encapsulates the inputs/outputs and separates scheduling and waiting for result.
 
 .. tab:: C++ G-API
@@ -58,31 +56,34 @@ OpenCV is used to draw resulting bounding boxes, labels, and other information. 
    #. G-API pipeline performs inference on the Face Detection network.
    #. G-API pipeline runs post processing kernel.
    #. G-API pipeline performs four inferences, using the Age/Gender, Head Pose, Emotions, and Facial Landmarks detection networks if they are specified in the command line.
-   6. The application displays the results.
-
-   .. note:: 
-
-      **NOTE**: By default, Open Model Zoo demos expect input with BGR channels order. If you trained your model to work with RGB order, you need to manually rearrange the default channels order in the demo application or reconvert your model using the Model Optimizer tool with the ``--reverse_input_channels`` argument specified. For more information about the argument, refer to **When to Reverse Input Channels** section of `Converting a Model Using General Conversion Parameters <https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Converting_Model_General.html>`_.
+   #. The application displays the results.
 
 @endsphinxdirective
+
+> **NOTE**: By default, Open Model Zoo demos expect input with BGR channels order. If you trained your model to work with RGB order, you need to manually rearrange the default channels order in the demo application or reconvert your model using the Model Optimizer tool with the ``--reverse_input_channels`` argument specified. For more information about the argument, refer to **When to Reverse Input Channels** section of `Converting a Model Using General Conversion Parameters <https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Converting_Model_General.html>`_.
+
+## Supported Models
+
+   * age-gender-recognition-retail-0013
+   * anti-spoof-mn3
+   * emotions-recognition-retail-0003
+   * face-detection-adas-0001
+   * face-detection-retail-0004
+   * face-detection-retail-0005
+   * face-detection-retail-0044
+   * facial-landmarks-35-adas-0002
+   * head-pose-estimation-adas-0001
+
+> **NOTE**: Refer to the tables [Intel's Pre-Trained Models Device Support](../../../models/intel/device_support.md) and [Public Pre-Trained Models Device Support](../../../models/public/device_support.md) for the details on models inference support at different devices.
 
 ## Preparing to Run
 
-@sphinxdirective
-
-.. tab:: C++
-
-   For demo input image or video files you may refer to :doc:`Media Files Available for Demos <../README.md#Media-Files-Available-for-Demos>`.
-   The list of models supported by the demo is in ``<omz_dir>/demos/interactive_face_detection_demo/cpp/models.lst`` file.
-   This file can be used as a parameter for :doc:`Model Downloader <../../tools/downloader/README>` and Converter to download and, if necessary, convert models to OpenVINO Inference Engine format (\*.xml + \*.bin).
+For demo input image or video files you may refer to :doc:`Media Files Available for Demos <../README.md#Media-Files-Available-for-Demos>`.
    
-.. tab:: C++ G-API
+### Downloading and converting models
 
-   For demo input image or video files you may refer to :doc:`Media Files Available for Demos <../README.md#Media-Files-Available-for-Demos>`.
-   The list of models supported by the demo is in ``<omz_dir>/demos/interactive_face_detection_demo/cpp/models.lst`` file.
-   This file can be used as a parameter for :doc:`Model Downloader <../../tools/downloader/README>` and Converter to download and, if necessary, convert models to OpenVINO Inference Engine format (\*.xml + \*.bin).
-
-@endsphinxdirective
+The list of models supported by the demo is in ``<omz_dir>/demos/interactive_face_detection_demo/cpp/models.lst`` file.
+This file can be used as a parameter for :doc:`Model Downloader <../../tools/downloader/README>` and Converter to download and, if necessary, convert models to OpenVINO Inference Engine format (\*.xml + \*.bin).
 
 An example of using the Model Downloader:
 
@@ -96,37 +97,58 @@ An example of using the Model Converter:
 python3 <omz_dir>/tools/downloader/converter.py --list models.lst
 ```
 
-### Supported Models
+### Selecting sample media
+For demo input image or video files you may refer to [Media Files Available for Demos](../../README.md#Media-Files-Available-for-Demos). Choose a video with multiple faces.
+
+## Running
+
+### Example command
+
+To do inference on a GPU with the OpenVINO&trade; toolkit pre-trained models, run the following command:
 
 @sphinxdirective
 .. tab:: C++
-
-   * age-gender-recognition-retail-0013
-   * anti-spoof-mn3
-   * emotions-recognition-retail-0003
-   * face-detection-adas-0001
-   * face-detection-retail-0004
-   * face-detection-retail-0005
-   * face-detection-retail-0044
-   * facial-landmarks-35-adas-0002
-   * head-pose-estimation-adas-0001
+ 
+   .. code-block:: sh
+   
+      ./interactive_face_detection_demo \
+      -i <path_to_video>/<input_video>.mp4 \
+      -m <path_to_model>/face-detection-adas-0001.xml \
+      -m_ag <path_to_model>/age-gender-recognition-retail-0013.xml \
+      -m_hp <path_to_model>/head-pose-estimation-adas-0001.xml \
+      -m_em <path_to_model>/emotions-recognition-retail-0003.xml \
+      -m_lm <path_to_model>/facial-landmarks-35-adas-0002.xml \
+      -m_am <path_to_model>/anti-spoof-mn3.xml
+      -d GPU
 
 .. tab:: C++ G-API
 
-   * age-gender-recognition-retail-0013
-   * emotions-recognition-retail-0003
-   * face-detection-adas-0001
-   * face-detection-retail-0004
-   * face-detection-retail-0005
-   * face-detection-retail-0044
-   * facial-landmarks-35-adas-0002
-   * head-pose-estimation-adas-0001
+  .. code-block:: sh
+
+     ./interactive_face_detection_demo_gapi \
+     -d GPU \
+     -i <path_to_video>/inputVideo.mp4 \
+     -m <path_to_model>/face-detection-adas-0001.xml \
+     -m_ag <path_to_model>/age-gender-recognition-retail-0013.xml \
+      -m_hp <path_to_model>/head-pose-estimation-adas-0001.xml \
+     -m_em <path_to_model>/emotions-recognition-retail-0003.xml \
+     -m_lm <path_to_model>/facial-landmarks-35-adas-0002.xml
+     -d GPU
 
 @endsphinxdirective
 
-> **NOTE**: Refer to the tables [Intel's Pre-Trained Models Device Support](../../../models/intel/device_support.md) and [Public Pre-Trained Models Device Support](../../../models/public/device_support.md) for the details on models inference support at different devices.
+>**NOTE**: If you provide a single image as an input, the demo processes and renders it quickly, then exits. To continuously visualize inference results on the screen, apply the `loop` option, which enforces processing a single image in a loop.
 
-## Running
+You can save processed results to a Motion JPEG AVI file or separate JPEG or PNG files using the `-o` option:
+
+* To save processed results in an AVI file, specify the name of the output file with `avi` extension, for example: `-o output.avi`.
+* To save processed results as images, specify the template name of the output image file with `jpg` or `png` extension, for example: `-o output_%03d.jpg`. The actual file names are constructed from the template at runtime by replacing regular expression `%03d` with the frame number, resulting in the following: `output_000.jpg`, `output_001.jpg`, and so on.
+
+To avoid disk space overrun in case of continuous input stream, like camera, you can limit the amount of data stored in the output file(s) with the `limit` option. The default value is 1000. To change it, you can apply the `-limit N` option, where `N` is the number of frames to store.
+
+>**NOTE**: Windows\* systems may not have the Motion JPEG codec installed by default. If this is the case, you can download OpenCV FFMPEG back end using the PowerShell script provided with the OpenVINO &trade; install package and located at `<INSTALL_DIR>/opencv/ffmpeg-download.ps1`. The script should be run with administrative privileges if OpenVINO &trade; is installed in a system protected folder (this is a typical case). Alternatively, you can save results as images.
+
+### Command-line help
 
 Running the application with the `-h` option yields the following usage message:
 
@@ -220,40 +242,6 @@ Running the application with the `-h` option yields the following usage message:
 @endsphinxdirective
 
 Running the application with an empty list of options yields the usage message given above and an error message.
-
-For example, to do inference on a GPU with the OpenVINO&trade; toolkit pre-trained models, run the following command:
-
-@sphinxdirective
-.. tab:: C++
- 
-   .. code-block:: sh
-   
-      ./interactive_face_detection_demo -i <path_to_video>/<input_video>.mp4 -m <path_to_model>/face-detection-adas-0001.xml -m_ag <path_to_model>/age-gender-recognition-retail-0013.xml -m_hp <path_to_model>/head-pose-estimation-adas-0001.xml -m_em <path_to_model>/emotions-recognition-retail-0003.xml -m_lm <path_to_model>/facial-landmarks-35-adas-0002.xml -m_am <path_to_model>/anti-spoof-mn3.xml -d GPU
-
-.. tab:: C++ G-API
-
-  .. code-block:: sh
-
-     ./interactive_face_detection_demo_gapi \
-        -d GPU \
-        -i <path_to_video>/inputVideo.mp4 \
-        -m <path_to_model>/face-detection-adas-0001.xml \
-        -m_ag <path_to_model>/age-gender-recognition-retail-0013.xml \
-        -m_hp <path_to_model>/head-pose-estimation-adas-0001.xml \
-        -m_em <path_to_model>/emotions-recognition-retail-0003.xml \
-        -m_lm <path_to_model>/facial-landmarks-35-adas-0002.xml
-
-@endsphinxdirective
-
->**NOTE**: If you provide a single image as an input, the demo processes and renders it quickly, then exits. To continuously visualize inference results on the screen, apply the `loop` option, which enforces processing a single image in a loop.
-
-You can save processed results to a Motion JPEG AVI file or separate JPEG or PNG files using the `-o` option:
-
-* To save processed results in an AVI file, specify the name of the output file with `avi` extension, for example: `-o output.avi`.
-* To save processed results as images, specify the template name of the output image file with `jpg` or `png` extension, for example: `-o output_%03d.jpg`. The actual file names are constructed from the template at runtime by replacing regular expression `%03d` with the frame number, resulting in the following: `output_000.jpg`, `output_001.jpg`, and so on.
-To avoid disk space overrun in case of continuous input stream, like camera, you can limit the amount of data stored in the output file(s) with the `limit` option. The default value is 1000. To change it, you can apply the `-limit N` option, where `N` is the number of frames to store.
-
->**NOTE**: Windows\* systems may not have the Motion JPEG codec installed by default. If this is the case, you can download OpenCV FFMPEG back end using the PowerShell script provided with the OpenVINO &trade; install package and located at `<INSTALL_DIR>/opencv/ffmpeg-download.ps1`. The script should be run with administrative privileges if OpenVINO &trade; is installed in a system protected folder (this is a typical case). Alternatively, you can save results as images.
 
 ## Demo Output
 
