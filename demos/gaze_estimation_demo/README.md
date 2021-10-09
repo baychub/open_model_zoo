@@ -78,7 +78,7 @@ python3 <omz_dir>/tools/downloader/converter.py --list models.lst
 
 ## Selecting Sample Media
 
-For demo input video files you may refer to [Media Files Available for Demos](../../README.md#Media-Files-Available-for-Demos).
+For demo input video files you may refer to [Media Files Available for Demos](../../README.md#Media-Files-Available-for-Demos). Choose a video with a face where the person looks in different directions.
 
 ## Running
 
