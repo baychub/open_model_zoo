@@ -41,7 +41,7 @@ OpenCV is used to draw resulting bounding boxes, labels, and other information i
 @sphinxdirective
 .. tab:: C++
 
-   #. The application reads command-line parameters and loads up to five networks depending on ``-m...`` options family to the Inference Engine.
+   #. The application reads command-line parameters and loads up to five networks, depending on the ``-m...`` set of options, to the Inference Engine.
    #. The application gets a frame from the OpenCV VideoCapture.
    #. The application performs up to five simultaneous inferences, using the Age/Gender, Head Pose, Emotions, Facial Landmarks, and Anti-spoof detection networks if they are specified in the command line.
    #. The application displays the results.
@@ -50,7 +50,7 @@ OpenCV is used to draw resulting bounding boxes, labels, and other information i
 
 .. tab:: C++ G-API
 
-   #. The application reads command-line parameters and loads up to five networks depending on ``-m...`` options family to the Inference Engine.
+   #. The application reads command-line parameters and loads up to five networks, depending on the ``-m...`` set of options, to the Inference Engine.
    #. G-API pipeline gets a video/image/camera like a source, using the OpenCV VideoCapture.
    #. G-API pipeline performs inference on the Face Detection network.
    #. G-API pipeline runs post processing kernel.
