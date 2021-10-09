@@ -26,12 +26,10 @@ This and other performance implications and tips for the Async API are covered i
 Other demo objectives are:
 
    * Video as input support via OpenCV\*
-   * Visualization of the resulting bounding boxes and text labels (from the labels file, see ``--labels`` option) or class number (if no file is provided)
+   * Visualization of the resulting bounding boxes and text labels (from the labels file, see `--labels` option) or class number (if no file is provided)
    * Use of OpenCV for bounding boxes and labels, so you can copy paste this code without need to pull Inference Engine demos helpers to your app
    * Demonstration of the Async API in action
    * Demonstration of multiple model architecture support (including pre- and postprocessing) in one application
-
-@endsphinxdirective
 
 ## How It Works
 
@@ -63,7 +61,7 @@ while (true) {
    
 For more details on the requests-based Inference Engine API, including async execution, refer to [Integrate the Inference Engine with Your Application](https://docs.openvinotoolkit.org/latest/_docs_IE_DG_Integrate_with_customer_application_new_API.html).
 
-> **NOTE**: By default, Open Model Zoo demos expect input with BGR channels order. If you trained your model to work with RGB order, you need to manually rearrange the default channels order in the demo application or reconvert your model using the Model Optimizer tool with the ``--reverse_input_channels`` argument specified. For more information about the argument, refer to **When to Reverse Input Channels** section of [Converting a Model Using General Conversion Parameters](https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Converting_Model_General.html).
+> **NOTE**: By default, Open Model Zoo demos expect input with BGR channels order. If you trained your model to work with RGB order, you need to manually rearrange the default channels order in the demo application or reconvert your model using the Model Optimizer tool with the `--reverse_input_channels` argument specified. For more information about the argument, refer to **When to Reverse Input Channels** section of [Converting a Model Using General Conversion Parameters](https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Converting_Model_General.html).
 
 ## Supported Models
 
@@ -257,8 +255,10 @@ For more details on the requests-based Inference Engine API, including async exe
 
 ### Downloading and converting models
 
-The list of models supported by the demo is in ``<omz_dir>/demos/object_detection_demo/python/models.lst`` file.
-This file can be used as a parameter for :doc:`Model Downloader <../../tools/downloader/README` and Converter to download and, if necessary, convert models to OpenVINO Inference Engine format (\*.xml + \*.bin). Because the list of models is lengthy, you may want to download just the ssd300 model used on the example command later on this page. To do so, replace `--list models.lst` with `--name ssd300` in the commands below. 
+The list of models supported by the demo is in the `<omz_dir>/demos/object_detection_demo/cpp/models.lst` or `<omz_dir>/demos/object_detection_demo/python/models.lst` file, dpending on language.
+This file can be used as a parameter for the [Model Downloader](../../tools/downloader/README.md) and Converter to download and, if necessary, convert models to OpenVINO Inference Engine format (\*.xml + \*.bin). 
+
+Because the list of models is lengthy, you may want to download just the ssd300 model used in the example command later on this page. To do so, replace `--list models.lst` with `--name ssd300` in the commands below. 
 
 An example of using the Model Downloader:
 
