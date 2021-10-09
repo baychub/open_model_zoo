@@ -85,6 +85,7 @@ For demo input video files you may refer to [Media Files Available for Demos](..
 Running the application with the `-h` option yields the following usage message:
 
 @sphinxdirective
+
 .. tab:: C++ G-API
 
    .. code-block:: sh
