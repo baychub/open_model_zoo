@@ -59,7 +59,7 @@ OpenCV is used to draw resulting bounding boxes, labels, and other information i
 
 @endsphinxdirective
 
-> **NOTE**: By default, Open Model Zoo demos expect input with BGR channels order. If you trained your model to work with RGB order, you need to manually rearrange the default channels order in the demo application or reconvert your model using the Model Optimizer tool with the ``--reverse_input_channels`` argument specified. For more information about the argument, refer to **When to Reverse Input Channels** section of `Converting a Model Using General Conversion Parameters <https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Converting_Model_General.html>`_.
+> **NOTE**: By default, Open Model Zoo demos expect input with BGR channels order. If you trained your model to work with RGB order, you need to manually rearrange the default channels order in the demo application or reconvert your model using the Model Optimizer tool with the `--reverse_input_channels` argument specified. For more information about the argument, refer to **When to Reverse Input Channels** section of `Converting a Model Using General Conversion Parameters <https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Converting_Model_General.html>`_.
 
 ## Supported Models
 
@@ -81,8 +81,8 @@ For demo input image or video files you may refer to :doc:`Media Files Available
    
 ### Downloading and converting models
 
-The list of models supported by the demo is in ``<omz_dir>/demos/interactive_face_detection_demo/cpp/models.lst`` file.
-This file can be used as a parameter for :doc:`Model Downloader <../../tools/downloader/README>` and Converter to download and, if necessary, convert models to OpenVINO Inference Engine format (\*.xml + \*.bin).
+The list of models supported by the demo is in the `<omz_dir>/demos/gaze_estimation_demo/cpp_gapi/models.lst` file.
+This file can be used as a parameter for Model Downloader and Model Converter to download and convert models to OpenVINO Inference Engine format (\*.xml + \*.bin).
 
 An example of using the Model Downloader:
 
