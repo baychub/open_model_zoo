@@ -57,16 +57,22 @@ You can use the following command to do inference on CPU with a pre-trained huma
    .. code-block:: sh
    
       python3 human_pose_estimation_demo.py \
-        -d CPU \
-        -i 0 \
+        -i <path_to_video>/input_video.mp4 \
         -m <path_to_model>/human-pose-estimation-0005.xml \
-        -at ae
+        --loop \
+        -at ae \
+        -d CPU 
       
 .. tab:: C++
 
    .. code-block:: sh
 
-      ./human_pose_estimation_demo -i <path_to_video>/input_video.mp4 -m <path_to_model>/human-pose-estimation-0001.xml -d CPU -at openpose
+      ./human_pose_estimation_demo \
+      -i <path_to_video>/input_video.mp4 \
+      -m <path_to_model>/human-pose-estimation-0001.xml \
+      --loop \
+      -d CPU \
+      -at openpose
       
 @endsphinxdirective
 
