@@ -4,41 +4,32 @@
 
 This demo showcases inference of Object Detection networks using Sync and Async API.
 
-Async API usage can improve overall frame-rate of the application, because rather than wait for inference to complete,
-the app can continue doing things on the host, while accelerator is busy.
-Specifically, this demo keeps the number of Infer Requests that you have set using `-nireq` flag.
-While some of the Infer Requests are processed by IE, the other ones can be filled with new frame data
-and asynchronously started or the next output can be taken from the Infer Request and displayed.
+Async API usage can improve the overall frame rate of the application because rather than wait for inference to complete,
+the app can continue doing things on the host while the accelerator is busy.
+Specifically, this demo maintains the number of infer requests that you have set using the `-nireq` flag.
+While some of the infer requests are processed by the Inference Engine, the other ones can be filled with new frame data
+and asynchronously started, or the next output can be taken from the infer request and displayed.
 
 This technique can be generalized to any available parallel slack, for example, doing inference and simultaneously
-encoding the resulting (previous) frames or running further inference, like some emotion detection on top of
+encoding the resulting (previous) frames or running further inference, like emotion detection on top of
 the face detection results.
-There are important performance caveats though, for example the tasks that run in parallel should try to avoid
+There are important performance caveats, though. For example, the tasks that run in parallel should try to avoid
 oversubscribing the shared compute resources.
-As another example, if the inference is performed on the HDDL, and the CPU is essentially idle,
-then it makes sense to do things on the CPU in parallel. But if the inference is performed say on the GPU,
+As another example, if the inference is performed on an Intel® Vision Accelerator Design with Intel® Movidius™ VPU using the HDDL plugin, leaving the CPU essentially idle,
+then it makes sense to do other things on the CPU in parallel. But if the inference is performed on the GPU, say, 
 then there is little gain from doing the (resulting video) encoding on the same GPU in parallel,
-because the device is already busy.
+because that device is already busy.
 
 This and other performance implications and tips for the Async API are covered in the
 [Optimization Guide](https://docs.openvinotoolkit.org/latest/_docs_optimization_guide_dldt_optimization_guide.html).
 
 Other demo objectives are:
 
-@sphinxdirective
-.. tab:: Python
-
    * Video as input support via OpenCV\*
-   * Visualization of the resulting bounding boxes and text labels (from the ``.labels`` file)
-  or class number (if no file is provided)
-
-.. tab:: C++
-
-   * Video as input support via OpenCV
-   * Visualization of the resulting bounding boxes and text labels (from the labels file, see ``-labels`` option) or class number (if no file is provided)
-   * OpenCV is used to draw resulting bounding boxes, labels, so you can copy paste this code without need to pull Inference Engine demos helpers to your app
+   * Visualization of the resulting bounding boxes and text labels (from the labels file, see ``--labels`` option) or class number (if no file is provided)
+   * Use of OpenCV for bounding boxes and labels, so you can copy paste this code without need to pull Inference Engine demos helpers to your app
    * Demonstration of the Async API in action
-   * Demonstration of multiple models architectures support (including pre- and postprocessing) in one application
+   * Demonstration of multiple model architecture support (including pre- and postprocessing) in one application
 
 @endsphinxdirective
 
@@ -47,76 +38,44 @@ Other demo objectives are:
 On startup, the application reads command-line parameters and loads a network to the Inference
 Engine. Upon getting a frame from the OpenCV VideoCapture, it performs inference and displays the results.
 
-Async API operates with a notion of the "Infer Request" that encapsulates the inputs/outputs and separates
-*scheduling and waiting for result*.
+Async API operates with a notion of the "infer request" that encapsulates the inputs/outputs and separates
+*scheduling* and *waiting for the result*.
 
-@sphixndirective
-.. tab:: Python
+Processing looks like this in pseudocode:
 
-   .. note:: 
+```
+while (true) {
+    capture frame
+    take empty InferRequest from pool
+    if(empty InferRequest available) {
+        populate empty InferRequest
+        set completion callback
+        submit InferRequest
+    }
+
+    while (there are completed InferRequests) {
+        get inference results from InferRequest
+        process inference results
+        display the frame
+    }
+}
+```
    
-      **NOTE**: By default, Open Model Zoo demos expect input with BGR channels order. If you trained your model to work with RGB order, you need to manually rearrange the default channels order in the demo application or reconvert your model using the Model Optimizer tool with the ``--reverse_input_channels`` argument specified. For more information about the argument, refer to **When to Reverse Input Channels** section of `Converting a Model Using General Conversion Parameters <https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Converting_Model_General.html>`_.
-      
-.. tab:: C++
+For more details on the requests-based Inference Engine API, including async execution, refer to `Integrate the Inference Engine with Your Application <https://docs.openvinotoolkit.org/latest/_docs_IE_DG_Integrate_with_customer_application_new_API.html>`_.
 
-   .. note:: 
-   
-      **NOTE**: By default, Open Model Zoo demos expect input with BGR channels order. If you trained your model to work with RGB order, you need to manually rearrange the default channels order in the demo application or reconvert your model using the Model Optimizer tool with the ``--reverse_input_channels`` argument specified. For more information about the argument, refer to **When to Reverse Input Channels** section of `Converting a Model Using General Conversion Parameters <https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Converting_Model_General.html>`_.
-      
-   This demo operates in asynchronous manner by using "Infer Requests" that encapsulate the inputs/outputs and separates *scheduling and waiting for result*,
-as shown in code mockup below:
+> **NOTE**: By default, Open Model Zoo demos expect input with BGR channels order. If you trained your model to work with RGB order, you need to manually rearrange the default channels order in the demo application or reconvert your model using the Model Optimizer tool with the ``--reverse_input_channels`` argument specified. For more information about the argument, refer to **When to Reverse Input Channels** section of `Converting a Model Using General Conversion Parameters <https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Converting_Model_General.html>`_.      
 
-   .. code-block:: cpp
-   
-      while (true) {
-          capture frame
-          take empty InferRequest from pool
-          if(empty InferRequest available) {
-              populate empty InferRequest
-              set completion callback
-              submit InferRequest
-          }
-
-          while (there're completed InferRequests) {
-              get inference results from InferRequest
-              process inference results
-              display the frame
-          }
-      }
-   
-   For more details on the requests-based Inference Engine API, including the Async execution, refer to `Integrate the Inference Engine with Your Application <https://docs.openvinotoolkit.org/latest/_docs_IE_DG_Integrate_with_customer_application_new_API.html>`_.
-
-@endsphinxdirective
-## Preparing to Run
+## Supported Models
 
 @sphinxdirective
-.. tab:: Python
 
-   For demo input image or video files you may refer to :doc:`Media Files Available for Demos <../README.md#Media-Files-Available-for-Demos>`.
-   The list of models supported by the demo is in ``<omz_dir>/demos/object_detection_demo/python/models.lst`` file.
-   This file can be used as a parameter for :doc:`Model Downloader <../../tools/downloader/README` and Converter to download and, if necessary, convert models to OpenVINO Inference Engine format (\*.xml + \*.bin).
+.. raw:: html
 
-.. tab:: C++
-
-   For demo input image or video files you may refer to :doc:`Media Files Available for Demos <../README.md#Media-Files-Available-for-Demos>`.
-   The list of models supported by the demo is in ``<omz_dir>/demos/object_detection_demo/cpp/models.lst`` file.
-   This file can be used as a parameter for :doc:`Model Downloader <../../tools/downloader/README` and Converter to download and, if necessary, convert models to OpenVINO Inference Engine format (\*.xml + \*.bin).
+   <div class="collapsible-section">
 
 @endsphinxdirective
 
-An example of using the Model Downloader:
-
-```sh
-python3 <omz_dir>/tools/downloader/downloader.py --list models.lst
-```
-
-An example of using the Model Converter:
-
-```sh
-python3 <omz_dir>/tools/downloader/converter.py --list models.lst
-```
-
-### Supported Models
+**Click to display the list of supported models.**
 
 @sphinxdirective
 .. tab:: Python
@@ -282,9 +241,97 @@ python3 <omz_dir>/tools/downloader/converter.py --list models.lst
 
 @endsphinxdirective
 
-> **NOTE**: Refer to the tables [Intel's Pre-Trained Models Device Support](../../../models/intel/device_support.md) and [Public Pre-Trained Models Device Support](../../../models/public/device_support.md) for the details on models inference support at different devices.
+@sphinxdirective
+    
+.. raw:: html
+
+   </div>
+
+@endsphinxdirective
+
+> **NOTE**: Refer to the tables [Intel's Pre-Trained Models Device Support](../../../models/intel/device_support.md) and [Public Pre-Trained Models Device Support](../../../models/public/device_support.md) for the details on model inference support on different devices.
+
+
+    
+## Preparing to Run
+
+### Downloading and converting models
+
+The list of models supported by the demo is in ``<omz_dir>/demos/object_detection_demo/python/models.lst`` file.
+This file can be used as a parameter for :doc:`Model Downloader <../../tools/downloader/README` and Converter to download and, if necessary, convert models to OpenVINO Inference Engine format (\*.xml + \*.bin). Because the list of models is lengthy, you may want to download just the ssd300 model used on the example command later on this page. To do so, replace `--list models.lst` with `--name ssd300` in the commands below. 
+
+An example of using the Model Downloader:
+
+```sh
+python3 <omz_dir>/tools/downloader/downloader.py --list models.lst
+```
+
+An example of using the Model Converter:
+
+```sh
+python3 <omz_dir>/tools/downloader/converter.py --list models.lst
+```
+
+### Selecting sample media
+
+@sphinxdirective
+
+For demo input image or video files, you may refer to :doc:`Media Files Available for Demos <../README.md#Media-Files-Available-for-Demos>`. For the example command later on this page, choose a video with people, vehicles or common animals like cats or dogs. 
+
+@endsphinxdirective
 
 ## Running
+
+### Example command
+
+@sphinxdirective
+.. tab:: Python
+
+   You can use the following command to do inference on GPU with a pre-trained object detection model:
+   .. code-block:: sh
+
+      python3 object_detection_demo.py \
+        -d GPU \
+        -i <path_to_video>/inputVideo.mp4 \
+        -m <path_to_model>/ssd300.xml \
+        -at ssd \
+        --labels <omz_dir>/data/dataset_classes/voc_20cl_bkgr.txt
+
+   The number of Infer Requests is specified by ``-nireq`` flag. An increase of this number usually leads to an increase
+   of performance (throughput), since in this case several Infer Requests can be processed simultaneously if the device
+   supports parallelization. However, a large number of Infer Requests increases the latency because each frame still
+   has to wait before being sent for inference.
+
+   For higher FPS, it is recommended that you set ``-nireq`` to slightly exceed the ``-nstreams`` value,
+   summed across all devices used.
+
+   .. note:: 
+   
+      **NOTE**: This demo is based on the callback functionality from the Inference Engine Python API.
+      The selected approach makes the execution in multi-device mode optimal by preventing wait delays caused by
+      the differences in device performance. However, the internal organization of the callback mechanism in Python API
+      leads to a decrease in FPS. Please, keep this in mind and use the C++ version of this demo for performance-critical cases.
+
+.. tab:: C++
+
+   If labels file is used, it should correspond to model output. Demo treat labels, listed in the file, to be indexed from 0, one line - one label (that is very first line contains label for ID 0). Note that some models may return labels IDs in range 1..N, in this case label file should contain "background" label at the very first line.
+
+   You can use the following command to do inference on GPU with a pre-trained object detection model:
+
+   .. code-block:: sh
+   
+      ./object_detection_demo \
+        -d GPU \
+        -i <path_to_video>/inputVideo.mp4 \
+        -m <path_to_model>/ssd300.xml \
+        -at ssd \
+        -labels <omz_dir>/data/dataset_classes/voc_20cl_bkgr.txt
+
+@endsphinxdirective
+
+>**NOTE**: If you provide a single image as an input, the demo processes and renders it quickly, then exits. To continuously visualize inference results on the screen, apply the `loop` option, which enforces processing a single image in a loop.
+
+### Command-line help
 
 Running the application with the `-h` option yields the following usage message:
 
@@ -428,68 +475,22 @@ Running the application with the `-h` option yields the following usage message:
 
 Running the application with the empty list of options yields the usage message given above and an error message.
 
-@sphinxdirective
-.. tab:: Python
-
-   You can use the following command to do inference on GPU with a pre-trained object detection model:
-   .. code-block:: sh
-
-      python3 object_detection_demo.py \
-        -d GPU \
-        -i <path_to_video>/inputVideo.mp4 \
-        -m <path_to_model>/ssd300.xml \
-        -at ssd \
-        --labels <omz_dir>/data/dataset_classes/voc_20cl_bkgr.txt
-
-   The number of Infer Requests is specified by ``-nireq`` flag. An increase of this number usually leads to an increase
-   of performance (throughput), since in this case several Infer Requests can be processed simultaneously if the device
-   supports parallelization. However, a large number of Infer Requests increases the latency because each frame still
-   has to wait before being sent for inference.
-
-   For higher FPS, it is recommended that you set ``-nireq`` to slightly exceed the ``-nstreams`` value,
-   summed across all devices used.
-
-   .. note:: 
-   
-      **NOTE**: This demo is based on the callback functionality from the Inference Engine Python API.
-      The selected approach makes the execution in multi-device mode optimal by preventing wait delays caused by
-      the differences in device performance. However, the internal organization of the callback mechanism in Python API
-      leads to a decrease in FPS. Please, keep this in mind and use the C++ version of this demo for performance-critical cases.
-
-.. tab:: C++
-
-   If labels file is used, it should correspond to model output. Demo treat labels, listed in the file, to be indexed from 0, one line - one label (that is very first line contains label for ID 0). Note that some models may return labels IDs in range 1..N, in this case label file should contain "background" label at the very first line.
-
-   You can use the following command to do inference on GPU with a pre-trained object detection model:
-
-   .. code-block:: sh
-   
-      ./object_detection_demo \
-        -d GPU \
-        -i <path_to_video>/inputVideo.mp4 \
-        -m <path_to_model>/ssd300.xml \
-        -at ssd \
-        -labels <omz_dir>/data/dataset_classes/voc_20cl_bkgr.txt
-
-@endsphinxdirective
-
->**NOTE**: If you provide a single image as an input, the demo processes and renders it quickly, then exits. To continuously visualize inference results on the screen, apply the `loop` option, which enforces processing a single image in a loop.
-
 You can save processed results to a Motion JPEG AVI file or separate JPEG or PNG files using the `-o` option:
 
-* To save processed results in an AVI file, specify the name of the output file with `avi` extension, for example: `-o output.avi`.
-* To save processed results as images, specify the template name of the output image file with `jpg` or `png` extension, for example: `-o output_%03d.jpg`. The actual file names are constructed from the template at runtime by replacing regular expression `%03d` with the frame number, resulting in the following: `output_000.jpg`, `output_001.jpg`, and so on.
-To avoid disk space overrun in case of continuous input stream, like camera, you can limit the amount of data stored in the output file(s) with the `limit` option. The default value is 1000. To change it, you can apply the `-limit N` option, where `N` is the number of frames to store.
+* To save processed results in an AVI file, specify the output filename with an `avi` extension, for example `-o output.avi`.
+* To save processed results as images, specify the template name of the output image file with a `jpg` or `png` extension, for example: `-o output_%03d.jpg`. The actual file names are constructed from the template at runtime by replacing the regular expression `%03d` with the frame number, resulting in the following: `output_000.jpg`, `output_001.jpg`, and so on.
+To avoid disk space overrun in case of a continuous input stream from a camera, you can limit the amount of data stored in the output file(s) with the `limit` option. The default value is 1000. To change it, you can apply the `-limit N` option, where `N` is the number of frames to store.
 
->**NOTE**: Windows\* systems may not have the Motion JPEG codec installed by default. If this is the case, you can download OpenCV FFMPEG back end using the PowerShell script provided with the OpenVINO &trade; install package and located at `<INSTALL_DIR>/opencv/ffmpeg-download.ps1`. The script should be run with administrative privileges if OpenVINO &trade; is installed in a system protected folder (this is a typical case). Alternatively, you can save results as images.
+>**NOTE**: Windows\* systems may not have the Motion JPEG codec installed by default. If this is the case, you can download the OpenCV FFMPEG back end using the PowerShell script provided with the OpenVINO &trade; install package and located at `<INSTALL_DIR>\opencv\ffmpeg-download.ps1`. The script should be run with administrative privileges if OpenVINO &trade; is installed in a system-protected folder (as is typical). Alternatively, you can save results as images.
 
 ## Demo Output
 
 The demo uses OpenCV to display the resulting frame with detections (rendered as bounding boxes and labels, if provided).
-The demo reports
+The demo reports:
 
-* **FPS**: average rate of video frame processing (frames per second).
-* **Latency**: average time required to process one frame (from reading the frame to displaying the results).
+* **FPS**: Average rate of video frame processing (frames per second)
+* **Latency**: Average time required to process one frame (from reading the frame to displaying the results)
+
 You can use both of these metrics to measure application-level performance.
 
 ## See Also
