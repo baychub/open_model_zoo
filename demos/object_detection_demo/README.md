@@ -61,9 +61,9 @@ while (true) {
 }
 ```
    
-For more details on the requests-based Inference Engine API, including async execution, refer to `Integrate the Inference Engine with Your Application <https://docs.openvinotoolkit.org/latest/_docs_IE_DG_Integrate_with_customer_application_new_API.html>`_.
+For more details on the requests-based Inference Engine API, including async execution, refer to [Integrate the Inference Engine with Your Application](https://docs.openvinotoolkit.org/latest/_docs_IE_DG_Integrate_with_customer_application_new_API.html).
 
-> **NOTE**: By default, Open Model Zoo demos expect input with BGR channels order. If you trained your model to work with RGB order, you need to manually rearrange the default channels order in the demo application or reconvert your model using the Model Optimizer tool with the ``--reverse_input_channels`` argument specified. For more information about the argument, refer to **When to Reverse Input Channels** section of `Converting a Model Using General Conversion Parameters <https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Converting_Model_General.html>`_.      
+> **NOTE**: By default, Open Model Zoo demos expect input with BGR channels order. If you trained your model to work with RGB order, you need to manually rearrange the default channels order in the demo application or reconvert your model using the Model Optimizer tool with the ``--reverse_input_channels`` argument specified. For more information about the argument, refer to **When to Reverse Input Channels** section of [Converting a Model Using General Conversion Parameters](https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Converting_Model_General.html).
 
 ## Supported Models
 
